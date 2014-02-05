@@ -50,9 +50,9 @@
 
 	<script id="hackSpotsTable" type="text/html">
 		<table>
-		<tr><th class="tHeader">Name</th><th class="tHeader">Address</th><th class="tHeader">City</th><th class="tHeader">State</th><th class="tHeader">Country</th><th class="">Elsewhere</th></tr>
+		<tr><th class="tHeader">Name</th><th class="tHeader">Address</th><th class="tHeader">City</th><th class="tHeader">Country</th><th class="">Elsewhere</th></tr>
 		  {{#rows}}
-		  	<tr id="{{rowNumber}}" class="spotRow"><td>{{name}}</td><td>{{address}}</td><td>{{city}}</td><td>{{state}}</td><td>{{country}}</td><td><a class="button" href="https://maps.google.com/maps?q={{address}},{{city}},{{state}}" target="_blank">G Map</a> <a class="button" href="http://www.yelp.com/search?find_desc={{name}}&find_loc={{city}},{{state}}" target="_blank">Yelp</a></td></tr>
+		  	<tr id="{{rowNumber}}" class="spotRow"><td>{{name}}</td><td>{{address}}</td><td>{{city}}</td><td>{{country}}</td><td><a class="button" href="https://maps.google.com/maps?q={{address}},{{city}}" target="_blank">G Map</a> <a class="button" href="http://www.yelp.com/search?find_desc={{name}}&find_loc={{city}}" target="_blank">Yelp</a></td></tr>
 		  	<tr class="hideRow"><td>wifi: {{wifipassword}}</td></tr>
 		  {{/rows}}
 	  </table>
@@ -63,7 +63,7 @@
 				<h4 class="fauxButton">MOST RECENT SPOT</h4>
 				<h2>{{name}}</h2>
 				<p class="colorText">{{address}}<p>
-				<p class="colorText">{{city}}, {{state}} {{#postcode}}, {{postcode}} {{/postcode}}</p>
+				<p class="colorText">{{city}}, {{#postcode}}, {{postcode}} {{/postcode}}</p>
 				<ul>
 			  	<li><span class="category">Wifi:</span> {{wifipassword}}</li>
 			  	<li><span class="category">Outlets:</span> {{outlets}}</li>
@@ -74,8 +74,8 @@
 			  	<li><span class="category">Contributed By:</span> <a href="http://www.twitter.com/{{contributerstwitter}}" target="_blank">@{{contributerstwitter}}</a></li>
 		  	</ul>
 		  	<ul>
-		  		<li><a href="https://maps.google.com/maps?q={{address}},{{city}},{{state}}" target="_blank">View in Google Maps</a></li>
-		  		<li><a href="http://www.yelp.com/search?find_desc={{name}}&find_loc={{city}},{{state}}" target="_blank">Find on Yelp</a></li>
+		  		<li><a href="https://maps.google.com/maps?q={{address}},{{city}}" target="_blank">View in Google Maps</a></li>
+		  		<li><a href="http://www.yelp.com/search?find_desc={{name}}&find_loc={{city}} target="_blank">Find on Yelp</a></li>
 		  	</ul>
 		  {{/rows}}
 	</script>
@@ -93,7 +93,7 @@
 			<h4 class="fauxButton">SELECTED SPOT</h4>
 			<h2>{{name}}</h2>
 			<p class="colorText">{{address}}<p>
-			<p class="colorText">{{city}}, {{state}} {{#postcode}}, {{postcode}} {{/postcode}}</p>
+			<p class="colorText">{{city}}, {{#postcode}}, {{postcode}} {{/postcode}}</p>
 			<ul>
 		  	<li><span class="category">Wifi:</span> {{wifipassword}}</li>
 		  	<li><span class="category">Outlets:</span> {{outlets}}</li>
@@ -103,8 +103,8 @@
 		  	<li><span class="category">Brewing:</span> {{brewing}}</li>
 	  	</ul>
 	  	<ul>
-	  		<li><a href="https://maps.google.com/maps?q={{address}},{{city}},{{state}}" target="_blank">View in Google Maps</a></li>
-	  		<li><a href="http://www.yelp.com/search?find_desc={{name}}&find_loc={{city}},{{state}}" target="_blank">Find on Yelp</a></li>
+	  		<li><a href="https://maps.google.com/maps?q={{address}},{{city}}" target="_blank">View in Google Maps</a></li>
+	  		<li><a href="http://www.yelp.com/search?find_desc={{name}}&find_loc={{city}}" target="_blank">Find on Yelp</a></li>
 	  	</ul>
 	  {{/rows}}
 	</script>
@@ -137,7 +137,7 @@
 			  $('#latestSpot').css("display", "none")
 			  $('#selectedSpot').html(selectedSpot).css("display", "inline")
 			  var selectedCoords = [dataElement[0].lat, dataElement[0].long]
-			  matchGeoJSONbyRowNumber(rowNumber, geoJSON, gData, "#FF4646")
+			  matchGeoJSONbyRowNumber(rowNumber, geoJSON, gData, "#FF941C")
 			  var markerLayer = Sheetsee.addMarkerLayer(geoJSON, map, 13)
 				addPopups(map, markerLayer)
 			  map.panTo(selectedCoords, 13)
@@ -150,7 +150,7 @@
 	  		var latestCompleteSpot = []
 	  		var startWithLatestRow = data.reverse()
 	  		startWithLatestRow.forEach(function(row){
-	  			if (!row.lat || !row.long || !row.name || !row.address || !row.city || !row.state ) return
+	  			if (!row.lat || !row.long || !row.name || !row.address || !row.city ) return
 	  			else latestCompleteSpot.push(row) 
 	  		})
 	  		return latestCompleteSpot[0]
@@ -175,7 +175,7 @@
 			var optionsJSON = ["name", "address", "city", "rowNumber"]
 		  var geoJSONnoHL = Sheetsee.createGeoJSON(gData, optionsJSON)
 		  // change the color of the most recently added spot's marker
-		  var geoJSON = highlightLastMarker(geoJSONnoHL, "#FF4646")
+		  var geoJSON = highlightLastMarker(geoJSONnoHL, "#FF941C")
 		  // create map, tilelayer (map background), markers and popups
 			var map = Sheetsee.loadMap("map")
 			Sheetsee.addTileLayer(map, 'examples.map-20v6611k')
@@ -198,7 +198,7 @@
 			  $('#' + rowNumber).addClass("selectedRow")
 			  // using row number, find that marker in the geoJSON, give it
 			  // the selected marker color
-			  matchGeoJSONbyRowNumber(rowNumber, geoJSON, gData, "#FF4646")
+			  matchGeoJSONbyRowNumber(rowNumber, geoJSON, gData, "#FF941C")
 			 //  var markerLayer = Sheetsee.addMarkerLayer(geoJSON, map, 13)
 				// addPopups(map, markerLayer)
 				// using row number, get the data for the selected spot
