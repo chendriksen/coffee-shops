@@ -52,7 +52,7 @@
 		<table>
 		<tr><th class="tHeader">Name</th><th class="tHeader">Address</th><th class="tHeader">City</th><th class="tHeader">Closest Station</th><th class="">Elsewhere</th></tr>
 		  {{#rows}}
-		  	<tr id="{{rowNumber}}" class="spotRow"><td>{{name}}</td><td>{{address}}</td><td>{{city}}</td><td>{{station}}</td><td><a class="button" href="https://maps.google.com/maps?q={{address}},{{city}}" target="_blank">G Map</a> <a class="button" href="http://www.yelp.com/search?find_desc={{name}}&find_loc={{city}}" target="_blank">Yelp</a></td></tr>
+		  	<tr id="{{rowNumber}}" class="spotRow"><td>{{name}}</td><td>{{address}}</td><td>{{city}}</td><td>{{station}}</td><td><a class="button" href="https://maps.google.com/maps?q={{address}},{{city}}" target="_blank">G Map</a></td><td><a class="button" href="https://foursquare.com/search?tab=venueResults&q={{name}}&lat={{lat}}&lng={{long}}" target="_blank">4SQ</a></td></tr>
 		  	<tr class="hideRow"><td>wifi: {{wifipassword}}</td></tr>
 		  {{/rows}}
 	  </table>
@@ -74,7 +74,7 @@
 		  	</ul>
 		  	<ul>
 		  		<li><a href="https://maps.google.com/maps?q={{address}},{{city}}" target="_blank">View in Google Maps</a></li>
-		  		<li><a href="http://www.yelp.com/search?find_desc={{name}}&find_loc={{city}} target="_blank">Find on Yelp</a></li>
+		  		<li><a href="https://foursquare.com/search?tab=venueResults&q={{name}}&lat={{lat}}&lng={{long}}" target="_blank">View on Foursquare</a></li>
 		  	</ul>
 		  {{/rows}}
 	</script>
@@ -102,7 +102,7 @@
 	  	</ul>
 	  	<ul>
 	  		<li><a href="https://maps.google.com/maps?q={{address}},{{city}}" target="_blank">View in Google Maps</a></li>
-	  		<li><a href="http://www.yelp.com/search?find_desc={{name}}&find_loc={{city}}" target="_blank">Find on Yelp</a></li>
+	  		<li><a href="https://foursquare.com/search?tab=venueResults&q={{name}}&lat={{lat}}&lng={{long}}" target="_blank">View on Foursquare</a></li>
 	  	</ul>
 	  {{/rows}}
 	</script>
